@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<title>HTML Tutorial</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    // I have used a simple array of strings for this demo but it will work for an array of objects too
+var awards = ["MUA 3 KHÓA TẶNG 1 KHÓA MIỄN PHÍ", "ĐĂNG KÝ 2 KHÓA TIẾNG ANH GIẢM 15%","GIẢM 10% VÀ TẶNG THÊM 10% KHI ĐĂNG KÍ KHÓA HỌC ĐẦU TIÊN", "Passing all exams with flying colors", "Healthy body, healthy mind"];
+function getRandomAwardSet(number) {
+  var qSet = [];
+  while (qSet.length < number) {
+    var randomIndex = Math.floor(Math.random() * awards.length);
+    if (qSet.indexOf(randomIndex) === -1) {
+      qSet.push(randomIndex);
+    }
+  }
+
+  return awards.filter(function (d, i) {
+    return qSet.indexOf(i) > -1;
+  });
+}
+
+// This will have 4 random questions, iterate over this in your `loadQuestion` method
+var awardsSet = getRandomAwardSet(2);
+
+var printThis ="" ;
+var quiz = $('#Summer');
+
+var kq_insetQ1 = $('input[name=tongdiem]');
+function printValue(){
+
+	for (i = 0; i< awardsSet.length; i++) {
+		var k=""
+		var a =  awardsSet[i];
+		
+		k += "<br>"+awardsSet[i];
+		//console.log('In thử:'+ myobj);	
+		
+		//var kq_insetQ1 = $('input[name=tongdiem]').val( awardsSet[i]);
+	//var label_adw = $('.giatri_adward').innerHTML = myobj;
+		
+		
+		//kq_insetQ1.val(awardsSet[i]);
+		//summer.append(label_adw);
+		
+		 printThis += "<br>"+awardsSet[i];
+		 
+		kq_insetQ1 =  $('input[name=tongdiem]').val( awardsSet[i]);
+	}      
+	 return printThis;
+	
+} 
+quiz.append(kq_insetQ1);
+
+document.getElementById("randomText").innerHTML = printValue();
+
+ // <-- to be printed to the div
+//document.getElementById("randomText").innerHTML = questions[questionSet];
+//console.log(awardsSet);
+
+
+ // document.getElementById("randomText").innerHTML = [questionSet];
+  //the problem
+ 
+
+});
+</script>
+<body>
+    <div id="randomText">
+	
+	<input type="text" name="tongdiem" />
+	</div>
+	<hr>
+	
+<p>Bạn đã trúng giả</p>
+<div id="Summer"></div>
+
+
+</body>
+</html>
+
